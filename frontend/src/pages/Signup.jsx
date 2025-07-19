@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast"; // ✅ import toast
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -10,7 +11,11 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const handleSignup = async () => {
-    if (!name || !email || !password) return alert("Please fill all fields");
+    if (!name || !email || !password) {
+      toast.error("Please fill all fields");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -20,12 +25,12 @@ export default function Signup() {
         password,
       });
 
-      alert("Signup successful. Please login.");
+      toast.success("Signup successful. Please login.");
       navigate("/");
     } catch (err) {
       console.error(err);
       const msg = err.response?.data?.error || "Error signing up.";
-      alert(msg);
+      toast.error(msg);
     } finally {
       setLoading(false);
     }
@@ -33,6 +38,12 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-100 to-emerald-300 flex justify-center items-center px-4 py-8">
+      <Toaster position="top-right" /> {/* ✅ Toast renderer */}
+
+      <div className="absolute top-4 right-4 bg-yellow-200 text-yellow-900 px-3 py-1 text-lg rounded shadow">
+        🚧 Under Construction
+      </div>
+
       <div className="bg-white rounded-xl shadow-xl flex w-full max-w-4xl overflow-hidden">
         {/* Left Side (Optional Image/Message) */}
         <div className="hidden md:flex flex-col justify-center items-center bg-rose-200 w-1/2 p-10">
