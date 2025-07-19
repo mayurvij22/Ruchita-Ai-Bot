@@ -1,0 +1,43 @@
+.env
+# Root level
+node_modules/
+.env
+.DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS files
+Thumbs.db
+
+# Optional IDE configs
+.vscode/
+.idea/
+
+# React build (client)
+client/build/
+
+# Node.js dependencies (backend)
+server/node_modules/
+
+# Optional test coverage
+coverage/
+*.lcov
+
+# Mac system files
+*.DS_Store
+
+# dotenv files (backend or frontend)
+client/.env
+server/.env
+
+# Runtime files
+*.pid
+*.seed
+*.seed.js
+
+# Cache
+.cache/
+.next/
