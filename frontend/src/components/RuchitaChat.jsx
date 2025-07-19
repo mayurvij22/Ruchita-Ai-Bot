@@ -8,22 +8,33 @@ export default function RuchitaChat() {
   const [reply, setReply] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleAsk = async () => {
-    if (!question.trim()) return;
-    setLoading(true);
-    setReply("");
+ const handleAsk = async () => {
+  if (!question.trim()) return;
+  setLoading(true);
+  setReply("");
 
-    try {
-      const res = await axios.post("https://ruchita-ai-bot.onrender.com/api/ask-health", {
+  const token = localStorage.getItem("token"); // ✅ retrieve token
+
+  try {
+    const res = await axios.post(
+      "https://ruchita-ai-bot.onrender.com/api/ask-health",
+      {
         prompt: `You are Ruchita, an AI health assistant. Respond in a helpful and friendly way.\n\nUser: ${question}`,
-      });
-      setReply(res.data.reply);
-    } catch (err) {
-      setReply("Sorry, Ruchita couldn't fetch a reply.");
-    }
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // ✅ send token
+        },
+      }
+    );
+    setReply(res.data.reply);
+  } catch (err) {
+    console.error(err);
+    setReply("Sorry, Ruchita couldn't fetch a reply.");
+  }
 
-    setLoading(false);
-  };
+  setLoading(false);
+};
 
   const renderReply = () => {
     if (loading) return <TypingDots />;
