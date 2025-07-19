@@ -11,7 +11,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     if (!email || !password) return alert("Please fill all fields");
-    
+
     setLoading(true);
     try {
       const res = await axios.post("https://ruchita-ai-bot.onrender.com/api/auth/login", {
@@ -32,42 +32,56 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-rose-100">
-      <div className="bg-white shadow-md rounded p-6 w-96 space-y-4">
-        <h2 className="text-xl font-bold text-center">Login</h2>
+    <div className="min-h-screen bg-gradient-to-br  from-emerald-100 to-emerald-300 flex justify-center items-center px-4 py-8">
+      <div className="bg-white rounded-xl shadow-xl flex w-full max-w-4xl overflow-hidden">
+        {/* Left Side (Optional) */}
+        <div className="hidden md:flex flex-col justify-center items-center bg-rose-200 w-1/2 p-10">
+          <h1 className="text-4xl font-bold text-rose-700">Welcome Back!</h1>
+          <p className="text-rose-800 mt-4 text-center">
+            Ruchita is here to help you with health tips and guidance.
+          </p>
+          <img src="https://png.pngtree.com/png-clipart/20230823/original/pngtree-hospital-logo-icon-abstract-alliance-picture-image_8313149.png" alt="health" className="mt-6 w-32" />
+        </div>
 
-        <input
-          className="w-full p-2 border rounded"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        {/* Right Side (Form) */}
+        <div className="w-full md:w-1/2 p-8 md:p-10">
+          <h2 className="text-2xl font-bold text-center text-rose-700 mb-6">Login to Ruchita</h2>
 
-        <input
-          className="w-full p-2 border rounded"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <div className="space-y-4">
+            <input
+              className="w-full p-3 border border-rose-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400 transition"
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              className="w-full p-3 border border-rose-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400 transition"
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              onClick={handleLogin}
+              disabled={loading}
+              className={`w-full py-3 rounded-lg text-white font-semibold transition ${
+                loading
+                  ? "bg-emerald-300 cursor-not-allowed"
+                  : "bg-emerald-500 hover:bg-emerald-600"
+              }`}
+            >
+              {loading ? "Logging in..." : "Login"}
+            </button>
+          </div>
 
-        <button
-          onClick={handleLogin}
-          className={`${
-            loading ? "bg-emerald-300" : "bg-emerald-500 hover:bg-emerald-600"
-          } text-white w-full py-2 rounded`}
-          disabled={loading}
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-
-        <p
-          onClick={() => navigate("/signup")}
-          className="text-center text-sm text-blue-500 hover:underline cursor-pointer"
-        >
-          New here? Sign up
-        </p>
+          <p
+            onClick={() => navigate("/signup")}
+            className="mt-6 text-sm text-center text-blue-500 hover:underline cursor-pointer"
+          >
+            Don’t have an account? <span className="font-medium">Sign Up</span>
+          </p>
+        </div>
       </div>
     </div>
   );
