@@ -25,7 +25,7 @@ function App() {
     setReply("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/ask-health", {
+      const res = await axios.post("https://ruchita-ai-bot.onrender.com/api/ask-health", {
         prompt: `You are Ruchita, an AI health assistant. Respond in a helpful and friendly way.\n\nUser: ${question}`,
       });
       setReply(res.data.reply);
