@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ChatPage from "./pages/ChatPage";
 import ProtectedRoute from "./utils/ProtectedRoute";
-
+import Footer from "./components/Footer";
 export default function App() {
   return (
     <Router>
@@ -16,6 +16,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <ChatPage />
+              <Footer />
             </ProtectedRoute>
           }
         />

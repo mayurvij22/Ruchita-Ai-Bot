@@ -8,14 +8,14 @@ const prompts = [
 
 export default function ExamplePrompts({ setQuestion }) {
   return (
-    <div className="space-y-2">
-      <p className="text-sm text-gray-500">Example questions:</p>
-      <div className="flex flex-wrap gap-2">
+    <div className="space-y-3">
+      <p className="text-sm text-gray-600 font-medium">💡 Try asking:</p>
+      <div className="flex flex-wrap gap-3">
         {prompts.map((example, idx) => (
           <button
             key={idx}
             onClick={() => setQuestion(example)}
-            className="text-sm bg-rose-100 hover:bg-rose-200 text-rose-700 px-3 py-1 rounded-full"
+            className="text-sm bg-rose-100 hover:bg-rose-200 text-rose-700 px-4 py-2 rounded-full shadow-sm transition-all duration-200 ease-in-out hover:scale-105"
           >
             {example}
           </button>
