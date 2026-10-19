@@ -1,98 +1,84 @@
-# 💖 Ruchita AI – Backend
+<div align="center">
 
-**Welcome Back!**  
-**Ruchita is here to help you with health tips and guidance.** 🩺🌟
+# 💖 Ruchita AI: Health Assistant
 
-This is the backend server for **Ruchita AI**, your intelligent health companion. It uses AI models to provide personalized wellness guidance, symptom checks, and lifestyle tips — powered by **Node.js**, **Express**, **MongoDB**, and integrated with **Cloudinary** and external AI services.
+**An AI wellness companion. Sign up, ask health questions and get friendly guidance powered by Google Gemini.**
 
----
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google%20Gemini-8E75B2?logo=googlegemini&logoColor=white)
 
-## 🌟 Key Features
+### [🌐 Live demo](https://ruchita-ai-bot.vercel.app)
 
-- 🧠 AI-based health insights and suggestions
-- 🛡️ User authentication with JWT
-- ☁️ Cloudinary support for profile uploads (if applicable)
-- 📦 MongoDB for storing user data and chat history
-- 🧰 Organized Express server with MVC structure
-
----
-
-## 🛠️ Tech Stack
-
-- Node.js + Express
-- MongoDB + Mongoose
-- JWT for authentication
-- Cloudinary + Multer for file handling
-- dotenv, axios, cors
+</div>
 
 ---
 
-## 📁 Project Structure
+## ✨ Features
 
-ruchita-backend/
-├── index.js
-├── .env
-├── routes/
-├── controllers/
-├── models/
-├── middleware/
-└── utils/
+- **Sign up and log in** with JWT authentication (bcrypt-hashed passwords)
+- **Ask health questions** and get guidance from **Google Gemini** (`gemini-1.5-flash`)
+- **Example prompts** to get started quickly
+- Chat UI with a typing indicator and toast notifications
+- Protected chat route and logout
 
-yaml
-Copy
-Edit
+> [!IMPORTANT]
+> Ruchita gives general wellness information only. It's **not a substitute for professional medical advice.**
 
----
+## 🏗️ Architecture
 
-## 🚀 Getting Started
+```mermaid
+flowchart LR
+    FE[React frontend<br/>/ · /signup · /chat] -- JWT --> BE[Express API]
+    BE --> DB[(MongoDB<br/>users)]
+    BE -- prompt --> AI[Google Gemini]
+```
 
-1. **Clone the repository**
+## 📡 API
+
+| Method | Endpoint | Description |
+|:---:|---|---|
+| `POST` | `/api/auth/signup` | Create an account |
+| `POST` | `/api/auth/login` | Log in and receive a JWT |
+| `POST` | `/api/user` | Create a user record (`{ "name": "..." }`) |
+| `POST` | `/api/ask-health` | Ask a health question (`{ "prompt": "..." }`) |
+
+## 🚀 Run locally
 
 ```bash
-git clone https://github.com/your-username/ruchita-backend.git
-cd ruchita-backend
-Install dependencies
+git clone https://github.com/mayurvij22/Ruchita-Ai-Bot.git
+cd Ruchita-Ai-Bot
+```
 
-bash
-Copy
-Edit
-npm install
-Set up environment variables
+`backend/.env`:
 
-Create a .env file with the following:
-
-env
-Copy
-Edit
+```env
 PORT=5000
-MONGODB_URI=your_mongodb_connection
-JWT_SECRET=your_jwt_secret
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-📜 Available Scripts
-Script	Description
-npm start	Run server with Node
-npm run dev	Run server with nodemon
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=a-long-random-string
+GEMINI_API_KEY=your_gemini_key
+```
 
-📡 Sample API Endpoints
-POST /api/auth/register – Register user
+```bash
+cd backend && npm install && npm run dev
+cd ../frontend && npm install && npm run dev
+```
 
-POST /api/auth/login – Login and receive token
+## 🛠️ Tech stack
 
-POST /api/health/analyze – Get health tips from Ruchita
+| Layer | Technology |
+|---|---|
+| Frontend | React, Vite, React Router, Tailwind CSS, react-hot-toast |
+| Backend | Node.js, Express, Mongoose, JWT, bcryptjs |
+| AI | Google Gemini |
+| Hosting | Vercel |
 
-GET /api/history – View past AI interactions
+---
 
-🧪 Example Use Case
-http
-Copy
-Edit
-POST /api/health/analyze
-Headers:
-  Authorization: Bearer <jwt_token>
-  Content-Type: application/json
-Body:
-{
-  "message": "I'm having a headache and cold. What should I do?"
-}
+<div align="center">
+
+Made by **[Mayur Patil](https://github.com/mayurvij22)**
+
+</div>
